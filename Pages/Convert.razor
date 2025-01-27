@@ -1,0 +1,46 @@
+﻿@page "/convert"
+
+<PageTitle>Konvertering</PageTitle>
+<!--
+Konvertera meter till fot (feet) - matas exempelvis 2 in för antal meter, ska resultatet visa 6,6 fot (avrunda till två decimaler).
+Konvertera km/h till miles/hour - matas exempelvis 100 in för km/h, ska resultatet visa 62 miles/hour (avrunda till heltal).
+-->
+
+<div>
+    <label for="meterInput">Meter:</label>
+    <input type="number"@bind="InputValueA"/>
+    <button @onclick="ConvertMeter">Konvertera</button>
+    @if (InputResultA > 0) {
+        <p> @InputResultA ft</p>
+    }
+
+</div>
+
+<div>
+    <label for="meterInput">Feet:</label>
+    <input type="number" @bind="InputValueB" />
+    <button @onclick="ConvertFeet">Konvertera</button>
+    @if (InputResultB > 0) {
+        <p> @InputResultB m</p>
+    }
+
+</div>
+
+@code {
+    private double InputValueA = 0;
+    private double InputValueB = 0;
+    private double InputResultA = 0;
+    private double InputResultB = 0;
+    private double FootValue = 0.3048;
+
+
+    private void ConvertMeter() 
+    {
+        InputResultA = Math.Round(InputValueA / FootValue, 2);
+    }
+
+    private void ConvertFeet()
+    {
+        InputResultB = Math.Round(InputValueB * FootValue, 2);
+    }
+}

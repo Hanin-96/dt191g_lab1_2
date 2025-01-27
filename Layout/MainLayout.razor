@@ -1,16 +1,16 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+    <NavMenu />
+
+<main>
+    <div class="main-container">
+        @Body
     </div>
+</main>
+<footer>
+    <div class="footer-wrap">
+        <p>
+            Hanin Farhan - Kontakta mig via e-post: <a href="mailto:hafa2300@student.miun.se">hafa2300@student.miun.se</a>
+        </p>
+    </div>
+</footer>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
