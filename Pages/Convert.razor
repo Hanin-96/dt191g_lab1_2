@@ -6,41 +6,102 @@ Konvertera meter till fot (feet) - matas exempelvis 2 in för antal meter, ska r
 Konvertera km/h till miles/hour - matas exempelvis 100 in för km/h, ska resultatet visa 62 miles/hour (avrunda till heltal).
 -->
 
-<div>
-    <label for="meterInput">Meter:</label>
-    <input type="number"@bind="InputValueA"/>
-    <button @onclick="ConvertMeter">Konvertera</button>
-    @if (InputResultA > 0) {
-        <p> @InputResultA ft</p>
-    }
+<div class="convert-wrap">
+    <div>
+        <label for="meterInput">Meter:</label>
+        <input type="number" @bind="@inputMeter" @oninput="ConvertFeet" />
 
+    </div>
+
+    <div>
+        <label for="FotInput">Fot:</label>
+        <input type="number" @bind="@inputFoot" @oninput="ConvertMeter" />
+
+    </div>
 </div>
 
-<div>
-    <label for="meterInput">Feet:</label>
-    <input type="number" @bind="InputValueB" />
-    <button @onclick="ConvertFeet">Konvertera</button>
-    @if (InputResultB > 0) {
-        <p> @InputResultB m</p>
-    }
 
+<div class="convert-wrap">
+    <div>
+        <label for="km-h">Km/h:</label>
+        <input type="number" @bind="@inputKilometres" @oninput="ConvertKilometres" />
+
+    </div>
+
+    <div>
+        <label for="miles-h">Miles/h:</label>
+        <input type="number" @bind="@inputMiles" @oninput="ConvertMiles" />
+
+    </div>
 </div>
+
+
 
 @code {
-    private double InputValueA = 0;
-    private double InputValueB = 0;
-    private double InputResultA = 0;
-    private double InputResultB = 0;
-    private double FootValue = 0.3048;
+    private double inputMeter = 0;
+    private double inputFoot = 0;
+    private double footValue = 0.3048;
+    private double milesValue = 0.6213711922;
+    private double inputMiles = 0;
+    private double inputKilometres = 0;
 
 
-    private void ConvertMeter() 
+    //Konvertera till meter
+    private void ConvertMeter(ChangeEventArgs e)
     {
-        InputResultA = Math.Round(InputValueA / FootValue, 2);
+        inputFoot = double.Parse(e.Value.ToString());
+        if (inputFoot > 0)
+        {
+            inputMeter = Math.Round(inputFoot * footValue, 2);
+        }
+        else
+        {
+            inputMeter = 0;
+        }
     }
 
-    private void ConvertFeet()
+    //Konvertera till foot
+    private void ConvertFeet(ChangeEventArgs e)
     {
-        InputResultB = Math.Round(InputValueB * FootValue, 2);
+        inputMeter = double.Parse(e.Value.ToString());
+        if (inputMeter > 0)
+        {
+            inputFoot = Math.Round(inputMeter / footValue, 2);
+        }
+        else
+        {
+            inputFoot = 0;
+        }
+
+    }
+
+    //Konvertera till Miles/h
+    private void ConvertKilometres(ChangeEventArgs e)
+    {
+        inputKilometres = double.Parse(e.Value.ToString());
+        if (inputKilometres > 0)
+        {
+            inputMiles = Math.Round(inputKilometres * milesValue, 2);
+        }
+        else
+        {
+            inputMiles = 0;
+        }
+
+    }
+
+    //Konvertera till km/h
+    private void ConvertMiles(ChangeEventArgs e)
+    {
+        inputMiles = double.Parse(e.Value.ToString());
+        if (inputMiles > 0)
+        {
+            inputKilometres = Math.Round(inputMiles / milesValue, 2);
+        }
+        else
+        {
+            inputKilometres = 0;
+        }
+
     }
 }
