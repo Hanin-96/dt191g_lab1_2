@@ -1,0 +1,56 @@
+﻿@page "/courses"
+@inject HttpClient Http
+
+<PageTitle>Kurser</PageTitle>
+
+
+@if (courseList == null)
+{
+    <p><em>Laddar kursdata...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kurskod:</th>
+                <th>Kursnamn:</th>
+                <th>Progression</th>
+                <th>Syllabus</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in courseList)
+            {
+                <tr>
+                    <td>@course.Code</td>
+                    <td>@course.CourseName</td>
+                    <td>@course.Progression</td>
+                    <td><a href="@course.Syllabus" target="_blank">Extern länk</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    public class Courses
+    {
+        public string? Code { get; set; }
+
+        public string? CourseName { get; set; }
+
+        public string? Progression { get; set; }
+
+        public string? Syllabus { get; set; }
+    }
+
+    private Courses[]? courseList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        courseList = await Http.GetFromJsonAsync<Courses[]>("https://dahlgren.miun.se/ramschema.php");
+    }
+
+}
