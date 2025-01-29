@@ -49,9 +49,10 @@
     //Konvertera till meter
     private void ConvertMeter(ChangeEventArgs e)
     {
-        inputFoot = double.Parse(e.Value.ToString());
-        if (inputFoot > 0)
+        //Tar emot värdet från event, konverterar till double och lagrar värdet
+        if (double.TryParse(e.Value?.ToString(), out double inputFoot) && inputFoot > 0)
         {
+            //Gör beräkningen
             inputMeter = Math.Round(inputFoot * footValue, 2);
         }
         else
@@ -63,8 +64,8 @@
     //Konvertera till foot
     private void ConvertFeet(ChangeEventArgs e)
     {
-        inputMeter = double.Parse(e.Value.ToString());
-        if (inputMeter > 0)
+        //Tar emot värdet från event, konverterar till double och lagrar värdet
+        if (double.TryParse(e.Value?.ToString(), out double inputMeter) && inputMeter > 0)
         {
             inputFoot = Math.Round(inputMeter / footValue, 2);
         }
@@ -78,8 +79,8 @@
     //Konvertera till Miles/h
     private void ConvertKilometres(ChangeEventArgs e)
     {
-        inputKilometres = double.Parse(e.Value.ToString());
-        if (inputKilometres > 0)
+        //Tar emot värdet från event, konverterar till double och lagrar värdet
+        if (double.TryParse(e.Value?.ToString(), out double inputKilometres) && inputKilometres > 0)
         {
             inputMiles = Math.Round(inputKilometres * milesValue, 2);
         }
@@ -93,8 +94,8 @@
     //Konvertera till km/h
     private void ConvertMiles(ChangeEventArgs e)
     {
-        inputMiles = double.Parse(e.Value.ToString());
-        if (inputMiles > 0)
+        //Tar emot värdet från event, konverterar till double och lagrar värdet
+        if (double.TryParse(e.Value?.ToString(), out double inputMiles) && inputMiles > 0)
         {
             inputKilometres = Math.Round(inputMiles / milesValue, 2);
         }

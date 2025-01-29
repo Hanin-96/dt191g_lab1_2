@@ -4,7 +4,10 @@
 
 table {
     width: 100%;
-    overflow-x: scroll;
+}
+
+.table-wrap {
+    overflow-x: auto;
 }
 
 th {
