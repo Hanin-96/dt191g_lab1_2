@@ -1,5 +1,22 @@
 ﻿.convert-wrap {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 2rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+    .convert-wrap div {
+        width: 100%;
+    }
+
+input {
+    width: 100%;
+    padding: 1rem;
+}
+
+svg {
+    max-width: 2.5rem;
+    width: 100%;
+    margin-top: 2rem;
 }

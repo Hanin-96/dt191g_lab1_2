@@ -1,10 +1,32 @@
-﻿
+﻿@implements IDisposable
+
 <div class="date-msg">
     <div class="date-msg">
-        <p>Dagens datum är: @DateTime.Now.ToString("yyyy-MM-dd" + " " + "HH:mm:ss")</p>
+        <p>@currentTimeNow</p>
     </div>
 </div>
 
 @code {
- 
+    private string? currentTimeNow;
+    private Timer? timer;
+
+    //körs när komponent initieras dvs innan rendering
+    protected override void OnInitialized()
+    {
+        currentTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        //Uppdaterar tiden varje sekund med timer
+        timer = new Timer(updateTime, null, 0, 1000);
+    }
+
+    private void updateTime(object? state)
+    {
+        currentTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        InvokeAsync(StateHasChanged);
+    }
+
+    //Frigöra resurser när timer inte behövs längre, bättre prestanda
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
 }

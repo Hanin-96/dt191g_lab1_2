@@ -1,30 +1,34 @@
 ﻿
 <header>
-    <div class="logo-wrap"> <a asp-area="" asp-page="/Index"><img src="./logo.svg" alt="logotyp" /></a></div>
-    <nav>
-        <ul>
-            <li>
-                <NavLink class="nav-item" href="" Match="NavLinkMatch.All">
-                    Hem
-                </NavLink>
-            </li>
-
-            <li>
-                <NavLink href="convert">
-                    Konvertering
-                </NavLink>
-            </li>
-
-            <li>
-                <NavLink href="courses">
-                    Kurser
-                </NavLink>
-            </li>
-        </ul>
-    </nav>
+    <div class="header-wrap">
+        <div class="logo-wrap"> <a asp-area="" asp-page="/Index"><img src="./logo.svg" alt="logotyp" /></a></div>
+        <TextComponent />
+    </div>
 </header>
+
+<nav>
+    <ul>
+        <li>
+            <NavLink class="nav-item" href="" Match="NavLinkMatch.All">
+                Hem
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink href="convert">
+                Konvertering
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink href="courses">
+                Kurser
+            </NavLink>
+        </li>
+    </ul>
+</nav>
 
 
 @code {
-   
+
 }
